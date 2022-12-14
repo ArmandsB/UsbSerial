@@ -1,5 +1,4 @@
 apply plugin: 'com.android.library'
-apply plugin: 'maven-publish'
 
 def artifact = "usbserial.jar"
 
@@ -45,10 +44,6 @@ android {
 
         testImplementation 'junit:junit:4.12'
 
-    }
-
-    repositories {
-        mavenCentral()
     }
 
     createJar.dependsOn(deleteJar, build)

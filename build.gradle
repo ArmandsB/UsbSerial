@@ -1,18 +1,19 @@
+apply plugin: 'maven-publish'
+
 buildscript {
     repositories {
-        jcenter()
-        google()
         mavenCentral()
+        google()
+
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.1.0'
+        classpath 'com.android.tools.build:gradle:4.2.1'
     }
 }
 
 allprojects {
     repositories {
-        jcenter()
-        google()
         mavenCentral()
+        google()
     }
 }
