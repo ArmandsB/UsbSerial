@@ -1,9 +1,9 @@
 apply plugin: 'com.android.library'
+apply plugin: 'maven-publish'
 
 def artifact = "usbserial.jar"
 
 android {
-
     group = 'com.felhr.usbserial'
     version = project.VERSION_NAME
 
