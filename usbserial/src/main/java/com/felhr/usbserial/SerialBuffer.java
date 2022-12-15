@@ -9,7 +9,6 @@ import okio.Buffer;
 public class SerialBuffer
 {
     static final int DEFAULT_READ_BUFFER_SIZE = 16 * 1024;
-    static final int MAX_BULK_BUFFER = 16 * 1024;
     private ByteBuffer readBuffer;
 
     private final SynchronizedBuffer writeBuffer;
@@ -151,11 +150,11 @@ public class SerialBuffer
                 }
             }
             byte[] dst;
-            if(buffer.size() <= MAX_BULK_BUFFER){
+            if(buffer.size() <= readBufferSize){
                 dst = buffer.readByteArray();
             }else{
                 try {
-                    dst = buffer.readByteArray(MAX_BULK_BUFFER);
+                    dst = buffer.readByteArray(readBufferSize);
                 } catch (EOFException e) {
                     e.printStackTrace();
                     return new byte[0];
