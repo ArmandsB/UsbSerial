@@ -1,12 +1,9 @@
 apply plugin: 'com.android.library'
+apply plugin: 'maven-publish'
 
 def artifact = "usbserial.jar"
 
 android {
-
-    group = 'com.felhr.usbserial'
-    version = project.VERSION_NAME
-
     compileSdkVersion Integer.parseInt(project.ANDROID_BUILD_SDK_VERSION)
 
     compileOptions {
@@ -18,7 +15,6 @@ android {
     defaultConfig {
         minSdkVersion Integer.parseInt(project.ANDROID_BUILD_MIN_SDK_VERSION)
         targetSdkVersion Integer.parseInt(project.ANDROID_BUILD_TARGET_SDK_VERSION)
-        archivesBaseName = "${project.name}-${project.VERSION_NAME}"
         consumerProguardFiles 'proguard-rules.pro'
     }
 
@@ -48,4 +44,17 @@ android {
     }
 
     createJar.dependsOn(deleteJar, build)
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                groupId = 'com.felhr'
+                artifactId = 'usbserial'
+                version = project.VERSION_NAME
+                from components.release
+            }
+        }
+    }
 }
